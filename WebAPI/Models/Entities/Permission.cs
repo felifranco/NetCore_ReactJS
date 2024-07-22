@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAPI.Models;
+namespace WebAPI.Models.Entities;
 
 public partial class Permission
 {
@@ -21,12 +21,17 @@ public partial class Permission
     public string ApellidoEmpleado { get; set; } = null!;
 
     /// <summary>
-    /// Permission Type
+    /// Permission Type ID
     /// </summary>
-    public PermissionType TipoPermiso { get; set; } = null!;
+    public int TipoPermisoId { get; set; }
 
     /// <summary>
     /// Permission granted on Date
     /// </summary>
     public DateOnly FechaPermiso { get; set; }
+
+    /// <summary>
+    /// Permission Type
+    /// </summary>
+    public PermissionType TipoPermiso { get; set; } = null!;
 }

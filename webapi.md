@@ -67,6 +67,7 @@ dotnet ef database update --context AccessContext
 ```
 
 ```
+dotnet add package AutoMapper --version 13.0.1
 ```
 
 ```

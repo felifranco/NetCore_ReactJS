@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAPI.Models;
+namespace WebAPI.Models.Entities;
 
 public partial class PermissionType
 {
