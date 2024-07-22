@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AccessContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AccessContext")));
 
 var app = builder.Build();
 
@@ -13,6 +19,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//La siguiente instrucción se puede comentar si la base de datos ya existe
+app.CreateDbIfNotExists();
 
 app.UseHttpsRedirection();
 

@@ -30,6 +30,63 @@ http://localhost:5055/weatherforecast
 
 [WebAPI/Program.cs](WebAPI/Program.cs)
 
+[Entity Framework documentation hub](https://learn.microsoft.com/en-us/ef/)
+
+
+
+[](https://learn.microsoft.com/en-us/training/modules/persist-data-ef-core/3-migrations)
+
+
+
+[SQL Server](https://learn.microsoft.com/en-us/ef/core/providers/sql-server/?tabs=dotnet-core-cli)
+
+```
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+```
+
+Agregar herramientas necesarias para EF Core.
+```
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```
+
+Instalar paquetes:
+```
+dotnet tool install --global dotnet-ef
+```
+
+```
+dotnet tool install --global dotnet-ef
+```
+
+```
+dotnet ef migrations add InitialCreate --context AccessContext
+```
+
+```
+dotnet ef database update --context AccessContext
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
 ```
 ```
 
