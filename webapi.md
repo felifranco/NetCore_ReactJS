@@ -2,6 +2,19 @@
 
 # .Net Core WebAPI
 
+## Tabla de contenido
+
+- [Versión](#versión)
+- [Creación del proyecto](#creación-del-proyecto)
+- [Correr el proyecto](#correr-el-proyecto)
+- [Entity Framework](#entity-framework)
+  - [SQL Server](#sql-server)
+  - [Conexión](#conexión)
+  - [Creación de la base de datos](#creación-de-la-base-de-datos)
+  - [Migraciones](#migraciones)
+    - [Migración manual](#migración-manual)
+- [Estructura del proyecto](#estructura-del-proyecto)
+
 ## Versión
 
 Se tiene instalada la versión 8 de **dotnet** en la distribución de Linux Fedora, se utilizó la [documentación oficial](https://learn.microsoft.com/es-mx/dotnet/core/install/linux-fedora) para la instalación del SDK:
@@ -10,6 +23,8 @@ Se tiene instalada la versión 8 de **dotnet** en la distribución de Linux Fedo
 $ dotnet --version
 8.0.105
 ```
+
+## Creación del proyecto
 
 Se utilizará la [CLI de .NET](https://learn.microsoft.com/es-mx/dotnet/core/tools/) para crear un nuevo proyecto:
 
@@ -28,6 +43,8 @@ Agremamos el archivo `.gitignore` para que solo se suban archivos necesarios al 
 ```
 dotnet new gitignore
 ```
+
+## Correr el proyecto
 
 Corremos el proyecto por primera vez
 
