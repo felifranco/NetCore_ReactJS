@@ -47,14 +47,14 @@ public class PermissionTypeController : ControllerBase
         {
             return BadRequest();
         }
-        _permissionTypeService.UpdatePermissionTypeAsync(permissionTypeDto);
-        return NoContent();
+        await _permissionTypeService.UpdatePermissionTypeAsync(permissionTypeDto);
+        return Ok();
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeletePermissionType(int id)
     {
-        _permissionTypeService.DeletePermissionTypeAsync(id);
-        return NoContent();
+        await _permissionTypeService.DeletePermissionTypeAsync(id);
+        return Ok();
     }
 }

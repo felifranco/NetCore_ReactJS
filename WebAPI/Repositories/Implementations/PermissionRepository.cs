@@ -23,7 +23,7 @@ public class PermissionRepository : IPermissionRepository
         return await _dbSet.ToListAsync();
     }
 
-    public async Task<Permission> GetByIdAsync(int id)
+    public async Task<Permission?> GetByIdAsync(int id)
     {
         return await _dbSet.FindAsync(id);
     }

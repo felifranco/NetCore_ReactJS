@@ -26,6 +26,19 @@ builder.Services.AddScoped<PermissionService>();
 builder.Services.AddScoped<PermissionTypeService>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
+//CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("*")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        }
+    );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,10 +48,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
+
 //La siguiente instrucción se puede comentar si la base de datos ya existe
 app.CreateDbIfNotExists();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.MapControllers();
 

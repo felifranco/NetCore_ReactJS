@@ -7,7 +7,7 @@ namespace WebAPI.Repositories.Interfaces;
 public interface IPermissionRepository
 {
     Task<IEnumerable<Permission>> GetAllAsync();
-    Task<Permission> GetByIdAsync(int id);
+    Task<Permission?> GetByIdAsync(int id);
     Task AddAsync(Permission permission);
     void Update(Permission permission);
     void Delete(Permission permission);

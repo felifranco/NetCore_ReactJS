@@ -1,10 +1,19 @@
-# NetCore_ReactJS
+# Acerca del proyecto
 
-# SQL Server
-[Documentación SQL Server](sql_server.md)
+El proyecto consiste en dos tablas, una de Tipos de permiso y permisos, está construido utilizando las siguientes tecnologías:
 
-# WebAPI
-[Documentación WebAPI](webapi.md)
+- **Frontend**: ReactJS
+- **Backend**: .NET core
+- **Base de datos**: SQL Server
 
-# Site
-[Documentación Site](site.md)
+## [Documentación Sitio](site.md)
+
+![vite_react](media/vite_react.png)
+
+## [Documentación WebAPI](webapi.md)
+
+![net_core](media/asp-net-core-web-api.png)
+
+## [Documentación SQL Server](sql_server.md)
+
+![sql_server_docker](media/sql_server_docker.jpeg)

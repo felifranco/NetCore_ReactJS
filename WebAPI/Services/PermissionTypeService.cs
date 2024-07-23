@@ -35,16 +35,19 @@ public class PermissionTypeService
         await _unitOfWork.CompleteAsync();
     }
 
-    public async void UpdatePermissionTypeAsync(PermissionTypeDTO permissionTypeDto)
+    public async Task UpdatePermissionTypeAsync(PermissionTypeDTO permissionTypeDto)
     {
         var permissionType = _mapper.Map<PermissionType>(permissionTypeDto);
         _unitOfWork.PermissionTypeRepository.Update(permissionType);
         await _unitOfWork.CompleteAsync();
     }
 
-    public async void DeletePermissionTypeAsync(int id){
+    public async Task DeletePermissionTypeAsync(int id){
         var permissionType = await _unitOfWork.PermissionTypeRepository.GetByIdAsync(id);
-        _unitOfWork.PermissionTypeRepository.Delete(permissionType);
-        await _unitOfWork.CompleteAsync();
+        if(permissionType != null)
+        {
+            _unitOfWork.PermissionTypeRepository.Delete(permissionType);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }
