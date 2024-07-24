@@ -206,3 +206,37 @@ Antes de poder utilizar el AutoMapper se debe instalar con el siguiente comando.
 ```
 dotnet add package AutoMapper --version 13.0.1
 ```
+
+```
+dotnet new xunit -o WebAPI.Tests
+```
+
+```
+dotnet add ./WebAPI.Tests/WebAPI.Tests.csproj reference ./WebAPI/WebAPI.csproj
+```
+
+Ingresar al proyecto de pruebas y agregar el archivo `.gitignore` para que solo se suban archivos necesarios al repositorio:
+
+```
+dotnet new gitignore
+```
+
+```
+dotnet add package Moq
+```
+
+```
+dotnet test
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```

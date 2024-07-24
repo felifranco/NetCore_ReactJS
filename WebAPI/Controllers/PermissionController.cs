@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using WebAPI.Services;
+using WebAPI.Services.Interfaces;
 using WebAPI.Models.DTOs;
 
 namespace WebAPI.Controllers;
@@ -9,9 +9,9 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class PermissionController : ControllerBase
 {
-    private readonly PermissionService _permissionService;
+    private readonly IPermissionService _permissionService;
 
-    public PermissionController(PermissionService permissionService)
+    public PermissionController(IPermissionService permissionService)
     {
         _permissionService = permissionService;
     }

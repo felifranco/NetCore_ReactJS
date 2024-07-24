@@ -1,3 +1,4 @@
+using WebAPI.Services.Interfaces;
 using WebAPI.UnitOfWork.Interfaces;
 using WebAPI.Models.Entities;
 using WebAPI.Models.DTOs;
@@ -5,7 +6,7 @@ using AutoMapper;
 
 namespace WebAPI.Services;
 
-public class PermissionService
+public class PermissionService : IPermissionService
 {
     private IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
