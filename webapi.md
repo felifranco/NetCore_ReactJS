@@ -1,6 +1,72 @@
 ![net_core](media/asp-net-core-web-api.png)
 
-# .Net Core WebAPI
+# Ejecución .Net Core WebAPI
+
+## Configuración de base de datos
+
+Antes de ejecutar el proyecto en `local`, crear la imagen de `Docker` o a través de `Docker Compose` es importante asegurarse que la conexión de la base de datos esté correcta. El valor de _Server_ para la cadena de conexión puede ser:
+
+- **localhost/IP**: Si la base de datos está instalada localmente o en un contenedor como en el archivo [sql_server.md](sql_server.md). También puede ir la IP o el nombre del dominio.
+- **sqlserver_db**: Es el nombre que se le da al contenedor de la base de datos si es creado a través de Docker Compose. Archivo de referencia [compose.yaml](compose.yaml).
+
+Las credenciales irán según la base de datos a la que se conecte, de forma predeterminada se deja como indica el archivo [sql_server.md](sql_server.md) o [compose.yaml](compose.yaml).
+
+**Mas información en [Conexión](#conexión)**.
+
+## Dockerfile
+
+Se creará la imagen de Docker siguiendo la [documentación oficial](https://learn.microsoft.com/es-es/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-8.0) para proyectos .NET Core.
+
+El proyecto WebAPI tiene asociado un archivo [Dockerfile](WebAPI/Dockerfile) que se utilizará para crear la imagen. Dentro de la carpeta `WebAPI` ejecutar el siguiente comando
+
+```
+docker build --tag netcore_webapi .
+```
+
+`--tag`: **netcore_webapi** es el nombre que se le dará a la imagen.
+
+Crear el contenedor con nombre `backend_netcore` desplegado en el puerto `8080`
+
+```
+docker run -it --rm -p 8080:8080 --name backend_netcore netcore_webapi
+```
+
+Se puede hacer una petición GET a la siguiente dirección
+
+```
+http://localhost:8080/api/permission-type
+```
+
+## Docker Compose
+
+La raíz del repositorio tiene incluido un archivo de Docker Compose, [compose.yaml](compose.yaml). Ubicarse en la raíz de todo el proyecto y ejecutar el siguiente comando para levantarlo
+
+```
+docker compose up
+```
+
+Descargará las imagenes y crearán los contenedores. Las direcciones quedan de la siguiente manera:
+
+- **Frontend**: http://localhost:8081/
+- **Backend**: http://localhost:8080/api/
+
+Cuando todos los recursos estén levantados se puede iniciar a utilizar la aplicación a través de la dirección del _Frontend_.
+
+Para finalizar la ejecución es necesario presionar `Ctrl+C` en la terminal y luevo ejecutar el siguiente comando para apagar y borrar todo
+
+```
+docker compose down --rmi all -v --remove-orphans
+```
+
+## Local
+
+Para correr el proyecto en local basta solo con correr el siguiente comando dentro de la carpeta `WebAPI`
+
+```
+dotnet run
+```
+
+# Acerca del proyecto
 
 ## Tabla de contenido
 
@@ -52,15 +118,15 @@ Corremos el proyecto por primera vez
 $ dotnet run
 Compilando...
 info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: http://localhost:5055
+      Now listening on: http://localhost:8080
 ```
 
-Como se puede ver en la salida de la terminal, el proyecto se despliega en `http://localhost:5055`, esta configuración se encuentra dentro de `profiles > http > applicationUrl` del archivo [WebAPI/Properties/launchSettings.json](WebAPI/Properties/launchSettings.json)
+Como se puede ver en la salida de la terminal, el proyecto se despliega en `http://localhost:8080`, esta configuración se encuentra dentro de `profiles > http > applicationUrl` del archivo [WebAPI/Properties/launchSettings.json](WebAPI/Properties/launchSettings.json)
 
 El proyecto tiene un endpoint configurado de forma predeterminada
 
 ```
-http://localhost:5055/weatherforecast
+http://localhost:8080/weatherforecast
 ```
 
 al ingresar a él se puede visualizar que el proyecto corre correctamente. La referencia al endpoint de prueba se encuentra en el archivo [WebAPI/Program.cs](WebAPI/Program.cs).
@@ -205,4 +271,30 @@ Antes de poder utilizar el AutoMapper se debe instalar con el siguiente comando.
 
 ```
 dotnet add package AutoMapper --version 13.0.1
+```
+
+https://learn.microsoft.com/es-es/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-8.0
+
+```
+docker build --tag netcore_webapi .
+```
+
+```
+docker run -it --rm -p 8080:8080 --name backend netcore_webapi
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
 ```

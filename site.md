@@ -1,13 +1,14 @@
 ![vite_react](media/vite_react.png)
-# EJECUCIÓN
+
+# Ejecución Vite + React
 
 ## Archivo de variables
 
-Antes de ejecutar el proyecto en local o crear la imagen de docker es importante asegurarse de tener el archivo `.env` en la raíz con las variables de entorno. Ejemplo:
+Antes de ejecutar el proyecto en `local`, crear la imagen de `Docker` o a través de `Docker Compose` es importante asegurarse de tener el archivo `.env` en la raíz con las variables de entorno. Ejemplo:
 
 ```
 VITE_APP_PORT=5000
-VITE_WEB_API=http://localhost:5055/api
+VITE_WEB_API=http://localhost:8080/api
 ```
 
 Más información en la sección [Variables de entorno y modos](#variables-de-entorno-y-modos).
@@ -29,19 +30,42 @@ Se generará la carpeta **dist** dentro del proyecto (Site), esa carpeta se debe
 Creamos la imagen
 
 ```shell
-docker build --tag sitio_react ./
+docker build --tag reactjs_site ./
 ```
 
 Creamos un contenedor
 
 ```shell
-docker run -d --name frontend -p 8080:80 sitio_react
+docker run -d --name frontend_reactjs -p 8081:80 reactjs_site
 ```
 
 El sitio se podrá visualizar en
 
 ```
-http://localhost:8080/
+http://localhost:8081/
+```
+
+## Docker Compose
+
+Antes de iniciar la ejecución con Docker Compose es importante generar los insumos de Vite como en la sección [Versión para desplegar](#versión-para-desplegar). Esto será reemplazado por la característica de [compilación en varias fases de Docker](https://docs.docker.com/build/building/multi-stage/) y agregado a [Site/Dockerfile](Site/Dockerfile).
+
+La raíz del repositorio tiene incluido un archivo de Docker Compose, [compose.yaml](compose.yaml). Ubicarse en la raíz de todo el proyecto y ejecutar el siguiente comando para levantarlo.
+
+```
+docker compose up
+```
+
+Descargará las imagenes y crearán los contenedores. Las direcciones quedan de la siguiente manera:
+
+- **Frontend**: http://localhost:8081/
+- **Backend**: http://localhost:8080/api/
+
+Cuando todos los recursos estén levantados se puede iniciar a utilizar la aplicación a través de la dirección del _Frontend_.
+
+Para finalizar la ejecución es necesario presionar `Ctrl+C` en la terminal y luevo ejecutar el siguiente comando para apagar y borrar todo
+
+```
+docker compose down --rmi all -v --remove-orphans
 ```
 
 ## Local
@@ -65,8 +89,6 @@ El sitio se podrá visualizar en
 ```
 http://localhost:5000/
 ```
-
-Es importante registrarse primero para poder utilizar la aplicación.
 
 # Acerca del proyecto
 
@@ -118,7 +140,7 @@ echo VITE_APP_PORT=5000 >> .env
 Agregamos la referencia al backend
 
 ```shell
-echo VITE_WEB_API=http://localhost:5055/api >> .env
+echo VITE_WEB_API=http://localhost:8080/api >> .env
 ```
 
 En este momento el puerto no ha sido modificado, solo hemos creado una nueva variable con el dato que ya puede ser accedido desde cualquier componente de React.
